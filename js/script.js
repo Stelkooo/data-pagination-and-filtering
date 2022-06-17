@@ -17,8 +17,29 @@ For assistance:
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
+function showPage(list, page) {
+   let itemsPerPage = 8;
+   let startIndex = (page * itemsPerPage) - itemsPerPage;
+   let endIndex = page * itemsPerPage;
 
+   let ul = document.getElementsByClassName("student-list")[0];
+   ul.innerHTML = "";
 
+   for (let i = 0; i < list.length; i++) {
+      if (i >= startIndex && i <= endIndex) {
+         ul.insertAdjacentHTML("beforeend", `<li class="student-item cf">
+         <div class="student-details">
+           <img class="avatar" src="${data[i].picture.large}" alt="Profile Picture">
+           <h3>${data[i].name.first} ${data[i].name.last}</h3>
+           <span class="email">${data[i].email}</span>
+         </div>
+         <div class="joined-details">
+           <span class="date">Joined ${data[i].registered.date}</span>
+         </div>
+       </li>`)
+      }
+   }
+}
 
 /*
 Create the `addPagination` function
