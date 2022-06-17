@@ -36,7 +36,7 @@ function showPage(list, page) {
          <div class="joined-details">
            <span class="date">Joined ${data[i].registered.date}</span>
          </div>
-       </li>`)
+       </li>`);
       }
    }
 }
@@ -45,7 +45,37 @@ function showPage(list, page) {
 Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
+function addPagination(list) {
+   console.log(list.length);
+   let numOfPaginationBtns = Math.round(list.length / 9);
+   
+   let ul = document.getElementsByClassName("link-list")[0];
+   ul.innerHTML = "";
 
+   for (let i = 1; i < numOfPaginationBtns + 1; i++) {
+      if (i === 1) {
+         ul.insertAdjacentHTML("beforeend", `<li>
+      <button type="button" class="active">${i}</button>
+    </li>`);
+      } else {
+         ul.insertAdjacentHTML("beforeend", `<li>
+      <button type="button">${i}</button>
+    </li>`);
+      }
+   }
 
+   ul.addEventListener("click", (e) => {
+      if (e.target.tagName === "BUTTON") {
+         for (let i = 0; i < ul.children.length; i++) {
+            let paginationBtn = ul.children[i].children[0];
+            if (paginationBtn.className === "active") {
+               paginationBtn.className = "";
+            }
+         }
+         e.target.className = "active";
+         showPage(data, e.target.innerHTML);
+      }
+   });
+}
 
 // Call functions
