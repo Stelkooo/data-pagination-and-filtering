@@ -46,7 +46,6 @@ Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
 function addPagination(list) {
-   console.log(list.length);
    let numOfPaginationBtns = Math.round(list.length / 9);
    
    let ul = document.getElementsByClassName("link-list")[0];
@@ -76,6 +75,16 @@ function addPagination(list) {
          showPage(data, e.target.innerHTML);
       }
    });
+}
+
+function addSearchComp() {
+   let header = document.getElementsByClassName("header")[0];
+   let searchCompHTML = `<label for="search" class="student-search">
+   <span>Search by name</span>
+   <input id="search" placeholder="Search by name...">
+   <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+ </label>`;
+   header.insertAdjacentHTML("beforeend", searchCompHTML);
 }
 
 // Call functions
