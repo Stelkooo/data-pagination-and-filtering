@@ -90,3 +90,4 @@ function addSearchComp() {
 // Call functions
 showPage(data, 1);
 addPagination(data);
+addSearchComp();
