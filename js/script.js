@@ -29,12 +29,12 @@ function showPage(list, page) {
       if (i >= startIndex && i <= endIndex) {
          ul.insertAdjacentHTML("beforeend", `<li class="student-item cf">
          <div class="student-details">
-           <img class="avatar" src="${data[i].picture.large}" alt="Profile Picture">
-           <h3>${data[i].name.first} ${data[i].name.last}</h3>
-           <span class="email">${data[i].email}</span>
+           <img class="avatar" src="${list[i].picture.large}" alt="Profile Picture">
+           <h3>${list[i].name.first} ${list[i].name.last}</h3>
+           <span class="email">${list[i].email}</span>
          </div>
          <div class="joined-details">
-           <span class="date">Joined ${data[i].registered.date}</span>
+           <span class="date">Joined ${list[i].registered.date}</span>
          </div>
        </li>`);
       }
@@ -85,6 +85,18 @@ function addSearchComp() {
    <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
  </label>`;
    header.insertAdjacentHTML("beforeend", searchCompHTML);
+
+   let searchInput = document.getElementById("search");
+   let searchBtn = document.querySelector(".student-search button");
+   searchBtn.addEventListener("click", (e) => {
+      let searchInputValue = searchInput.value.toLowerCase();
+      let searchData = data.filter(function (value, index, array) {
+         let studentFirst = value.name.first.toLowerCase();
+         let studentLast = value.name.last.toLowerCase();
+         return ((studentFirst.includes(searchInputValue)) || (studentLast.includes(searchInputValue)));
+      });
+      showPage(searchData, 1);
+   })
 }
 
 // Call functions
