@@ -97,6 +97,15 @@ function addSearchComp() {
       });
       showPage(searchData, 1);
    })
+   searchInput.addEventListener("keyup", (e) => {
+      let searchInputValue = searchInput.value.toLowerCase();
+      let searchData = data.filter(function (value, index, array) {
+         let studentFirst = value.name.first.toLowerCase();
+         let studentLast = value.name.last.toLowerCase();
+         return ((studentFirst.includes(searchInputValue)) || (studentLast.includes(searchInputValue)));
+      });
+      showPage(searchData, 1);
+   })
 }
 
 // Call functions
