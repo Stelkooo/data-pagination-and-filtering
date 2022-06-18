@@ -96,6 +96,7 @@ function addSearchComp() {
          return ((studentFirst.includes(searchInputValue)) || (studentLast.includes(searchInputValue)));
       });
       showPage(searchData, 1);
+      addPagination(searchData);
    })
    searchInput.addEventListener("keyup", (e) => {
       let searchInputValue = searchInput.value.toLowerCase();
@@ -105,6 +106,7 @@ function addSearchComp() {
          return ((studentFirst.includes(searchInputValue)) || (studentLast.includes(searchInputValue)));
       });
       showPage(searchData, 1);
+      addPagination(searchData);
    })
 }
 
