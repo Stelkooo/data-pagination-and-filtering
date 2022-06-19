@@ -78,6 +78,24 @@ function addPagination(list) {
 }
 
 function addSearchComp() {
+
+   function updateStudentList() {
+
+      let searchInputValue = searchInput.value.toLowerCase();
+
+      let searchData = data.filter(function (value, index, array) {
+
+         let studentFirst = value.name.first.toLowerCase();
+         let studentLast = value.name.last.toLowerCase();
+         return ((studentFirst.includes(searchInputValue)) || (studentLast.includes(searchInputValue)));
+
+      });
+
+      showPage(searchData, 1);
+      addPagination(searchData);
+
+   }
+
    let header = document.getElementsByClassName("header")[0];
    let searchCompHTML = `<label for="search" class="student-search">
    <span>Search by name</span>
@@ -88,26 +106,11 @@ function addSearchComp() {
 
    let searchInput = document.getElementById("search");
    let searchBtn = document.querySelector(".student-search button");
-   searchBtn.addEventListener("click", (e) => {
-      let searchInputValue = searchInput.value.toLowerCase();
-      let searchData = data.filter(function (value, index, array) {
-         let studentFirst = value.name.first.toLowerCase();
-         let studentLast = value.name.last.toLowerCase();
-         return ((studentFirst.includes(searchInputValue)) || (studentLast.includes(searchInputValue)));
-      });
-      showPage(searchData, 1);
-      addPagination(searchData);
-   })
-   searchInput.addEventListener("keyup", (e) => {
-      let searchInputValue = searchInput.value.toLowerCase();
-      let searchData = data.filter(function (value, index, array) {
-         let studentFirst = value.name.first.toLowerCase();
-         let studentLast = value.name.last.toLowerCase();
-         return ((studentFirst.includes(searchInputValue)) || (studentLast.includes(searchInputValue)));
-      });
-      showPage(searchData, 1);
-      addPagination(searchData);
-   })
+
+   searchBtn.addEventListener("click", updateStudentList);
+
+   searchInput.addEventListener("keyup", updateStudentList);
+
 }
 
 // Call functions
