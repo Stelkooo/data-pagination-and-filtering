@@ -79,7 +79,7 @@ function addPagination(list) {
             }
          }
          e.target.className = "active";
-         showPage(data, e.target.innerHTML);
+         showPage(list, e.target.innerHTML);
       }
    });
 }
