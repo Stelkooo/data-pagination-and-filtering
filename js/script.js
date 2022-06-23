@@ -46,7 +46,14 @@ Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
 function addPagination(list) {
-   let numOfPaginationBtns = Math.round(list.length / 9);
+   let numOfPaginationBtns;
+   
+   if (list.length <= 9) {
+      numOfPaginationBtns = 0;
+   } else {
+      numOfPaginationBtns = Math.round(list.length / 9);
+   }
+    
    
    let ul = document.getElementsByClassName("link-list")[0];
    ul.innerHTML = "";
