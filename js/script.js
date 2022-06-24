@@ -1,21 +1,9 @@
 /*
-Treehouse Techdegree:
-FSJS Project 2 - Data Pagination and Filtering
-*/
-
-
-
-/*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
-   Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
-*/
-
-
-
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
+   showPage function
+   [array]list - array of students
+   [number]page - which page number to display
+   displays the students on the page depending which page no was selected
+   will display an error if no students were passed
 */
 function showPage(list, page) {
    let itemsPerPage = 9;
@@ -43,12 +31,13 @@ function showPage(list, page) {
          }
       }
    }
-
 }
 
 /*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
+   addPagination function
+   [array]list - array of students
+   checks how many students were passed
+   will create and insert/remove page buttons depending on the list length
 */
 function addPagination(list) {
    numOfPaginationBtns = Math.ceil(list.length / 9);
@@ -82,23 +71,25 @@ function addPagination(list) {
    });
 }
 
+/*
+   addSearchComp function
+   takes no params
+   creates the search bar in the header
+   depending on the search it will keep/remove students from the data array
+   can be triggered through keyup and clicking on the search btn
+*/
 function addSearchComp() {
 
    function updateStudentList() {
 
       let searchInputValue = searchInput.value.toLowerCase();
-
       let searchData = data.filter(function (value, index, array) {
-
          let studentFirst = value.name.first.toLowerCase();
          let studentLast = value.name.last.toLowerCase();
          return ((studentFirst.includes(searchInputValue)) || (studentLast.includes(searchInputValue)));
-
       });
-      console.log(searchData);
       showPage(searchData, 1);
       addPagination(searchData);
-
    }
 
    let header = document.getElementsByClassName("header")[0];
@@ -115,7 +106,6 @@ function addSearchComp() {
    searchBtn.addEventListener("click", updateStudentList);
 
    searchInput.addEventListener("keyup", updateStudentList);
-
 }
 
 // Call functions
