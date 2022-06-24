@@ -34,7 +34,7 @@ header {
 	padding: 2em 0;
 }
 
-header h2 {
+header h2, .student-list h2 {
   font-size: 36px;
   text-transform: uppercase;
   font-weight: 800;
@@ -42,8 +42,6 @@ header h2 {
   letter-spacing: 2px;
 	margin-bottom: 25px;
 }
-
-
 
 .student-search {
   display: flex;
@@ -83,6 +81,10 @@ header h2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   grid-gap: 2em;
+}
+
+.student-list h2 {
+  text-align: center;
 }
 
 .student-item {

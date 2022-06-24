@@ -25,20 +25,25 @@ function showPage(list, page) {
    let ul = document.getElementsByClassName("student-list")[0];
    ul.innerHTML = "";
 
-   for (let i = 0; i < list.length; i++) {
-      if (i >= startIndex && i <= endIndex) {
-         ul.insertAdjacentHTML("beforeend", `<li class="student-item cf">
-         <div class="student-details">
-           <img class="avatar" src="${list[i].picture.large}" alt="Profile Picture">
-           <h3>${list[i].name.first} ${list[i].name.last}</h3>
-           <span class="email">${list[i].email}</span>
-         </div>
-         <div class="joined-details">
-           <span class="date">Joined ${list[i].registered.date}</span>
-         </div>
-       </li>`);
+   if (list.length === 0) {
+      ul.insertAdjacentHTML("beforeend", "<h2>No students found</h2>");
+   } else {
+      for (let i = 0; i < list.length; i++) {
+         if (i >= startIndex && i <= endIndex) {
+            ul.insertAdjacentHTML("beforeend", `<li class="student-item cf">
+            <div class="student-details">
+              <img class="avatar" src="${list[i].picture.large}" alt="Profile Picture">
+              <h3>${list[i].name.first} ${list[i].name.last}</h3>
+              <span class="email">${list[i].email}</span>
+            </div>
+            <div class="joined-details">
+              <span class="date">Joined ${list[i].registered.date}</span>
+            </div>
+          </li>`);
+         }
       }
    }
+
 }
 
 /*
@@ -90,7 +95,7 @@ function addSearchComp() {
          return ((studentFirst.includes(searchInputValue)) || (studentLast.includes(searchInputValue)));
 
       });
-
+      console.log(searchData);
       showPage(searchData, 1);
       addPagination(searchData);
 
